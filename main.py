@@ -5,7 +5,7 @@ def main():
     print(contenido)
 
     conteo = logica.contar_ocurrencias_caracteres(contenido)
-    print(conteo)
+    #print(conteo)
     
     lista_nodos = logica.convertir_a_lista_nodos(conteo)
     lista = logica.lista_enlazada_a_lista(lista_nodos)
