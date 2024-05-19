@@ -54,6 +54,37 @@ def ordenar_lista_asc(cabeza):
 
     return lista[0]
 
+def insertar_ordenado(cabeza, nuevo_nodo):
+    if cabeza is None or nuevo_nodo.ocurrencia < cabeza.ocurrencia:
+        nuevo_nodo.sig = cabeza
+        return nuevo_nodo
+
+    actual = cabeza
+    while actual.sig is not None and actual.sig.ocurrencia <= nuevo_nodo.ocurrencia:
+        actual = actual.sig
+
+    nuevo_nodo.sig = actual.sig
+    actual.sig = nuevo_nodo
+
+    return cabeza
+
+def generar_arbol_huffman(cabeza):
+    contador = 1
+    while cabeza and cabeza.sig:
+        primero = cabeza
+        segundo = cabeza.sig
+
+        nuevo_caracter = f"*{contador}"
+        nuevo_nodo = nodo.nodo(nuevo_caracter, primero.ocurrencia + segundo.ocurrencia)
+        nuevo_nodo.der = primero
+        nuevo_nodo.izq = segundo
+
+        cabeza = segundo.sig
+        cabeza = insertar_ordenado(cabeza, nuevo_nodo)
+        contador += 1
+
+    return cabeza
+
 # Función para imprimir la lista
 def imprimir_lista(cabeza):
     actual = cabeza
