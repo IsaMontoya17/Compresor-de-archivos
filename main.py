@@ -5,12 +5,11 @@ def main():
     print(contenido)
 
     conteo = logica.contar_ocurrencias_caracteres(contenido)
-    #print(conteo)
+    print(conteo)
     
     lista_nodos = logica.convertir_a_lista_nodos(conteo)
-    lista = logica.lista_enlazada_a_lista(lista_nodos)
-    logica.ordenar_lista_asc(lista)
-    logica.imprimir_lista(lista)
+    cabeza = logica.ordenar_lista_asc(lista_nodos)
+    logica.imprimir_lista(cabeza)
 
 if __name__ == "__main__":
     main()
