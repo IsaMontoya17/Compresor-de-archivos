@@ -8,7 +8,9 @@ def main():
     print(conteo)
     
     lista_nodos = logica.convertir_a_lista_nodos(conteo)
-    logica.imprimir_lista(lista_nodos)
+    lista = logica.lista_enlazada_a_lista(lista_nodos)
+    logica.ordenar_lista_asc(lista)
+    logica.imprimir_lista(lista)
 
 if __name__ == "__main__":
     main()
