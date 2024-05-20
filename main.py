@@ -15,6 +15,13 @@ def main():
     
     print("Árbol de Huffman generado:")
     logica.imprimir_lista(arbol_huffman)
+    
+    codigos_huffman = []
+    logica.asignar_codigos_huffman(arbol_huffman, "", codigos_huffman)
+    
+    print("Codigos Huffman asignados:")
+    for caracter, ocurrencia, codigo, longitud in codigos_huffman:
+        print(f"Caracter: {caracter}, Ocurrencia: {ocurrencia}, Codigo: {codigo}, Longitud: {longitud}")
 
 if __name__ == "__main__":
     main()
