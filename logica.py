@@ -99,7 +99,7 @@ def asignar_codigos_huffman(nodo, codigo_actual="", codigos=None, longitud=0):
     # Recorremos el árbol recursivamente hacia la izquierda y hacia la derecha
     asignar_codigos_huffman(nodo.izq, codigo_actual + "0", codigos, longitud + 1)
     asignar_codigos_huffman(nodo.der, codigo_actual + "1", codigos, longitud + 1)
-
+    
 
 # Función para imprimir la lista
 def imprimir_lista(cabeza):
