@@ -33,13 +33,15 @@ def main():
     
     # Comprimir texto
     codigo_comprimido = escritura.comprimir_texto(texto, diccionario_codigos)
+    print(codigo_comprimido)
     
     # Escribir archivo comprimido
     escritura.escribir_archivo_comprimido("./archivos/comprimido.txt", codigo_comprimido)
     
     print("Compresión completada con éxito.")
     
-    # Parte de Descompresión
+    # Descompresión
+    
     # Leer el código comprimido desde el archivo
     codigo_comprimido_leido = lectura.leer_archivo_como_string("./archivos/comprimido.txt")
     
@@ -50,10 +52,9 @@ def main():
     texto_descomprimido = lectura.descomprimir_texto(codigo_comprimido_leido, diccionario_decodificacion)
     
     # Escribir archivo descomprimido como texto
-    lectura.escribir_archivo_descomprimido("./archivos/descomprimido.txt", texto_descomprimido)
+    escritura.escribir_archivo_descomprimido("./archivos/descomprimido.txt", texto_descomprimido)
     
     print("Descompresión completada con éxito.")
-
-
+    
 if __name__ == "__main__":
     main()

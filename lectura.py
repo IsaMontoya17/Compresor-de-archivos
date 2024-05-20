@@ -27,6 +27,3 @@ def descomprimir_texto(codigo_comprimido, diccionario_decodificacion):
     
     return texto_descomprimido
 
-def escribir_archivo_descomprimido(nombre_archivo, texto_descomprimido):
-    with open(nombre_archivo, 'w', encoding='utf-8') as archivo:
-        archivo.write(texto_descomprimido)

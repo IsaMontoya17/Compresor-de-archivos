@@ -19,3 +19,7 @@ def comprimir_texto(texto, diccionario_codigos):
 def escribir_archivo_comprimido(nombre_archivo, codigo_comprimido):
     with open(nombre_archivo, 'w', encoding='utf-8') as archivo:
         archivo.write(codigo_comprimido)
+        
+def escribir_archivo_descomprimido(nombre_archivo, texto_descomprimido):
+    with open(nombre_archivo, 'w', encoding='utf-8') as archivo:
+        archivo.write(texto_descomprimido)
