@@ -19,8 +19,7 @@ def leer_diccionario_codigos(ruta_archivo):
             diccionario_codigos[codigo.strip()] = caracter
     return diccionario_codigos
 
-
-def descomprimir_archivo(nombre_archivo_comprimido, nombre_archivo_salida, diccionario_codigos): #arreglar
+def descomprimir_archivo(nombre_archivo_comprimido, nombre_archivo_salida, diccionario_codigos):
     with open(nombre_archivo_comprimido, 'rb') as archivo:
         bits_relleno = archivo.read(1)[0]
         codigo_comprimido_bytes = archivo.read()
@@ -33,7 +32,6 @@ def descomprimir_archivo(nombre_archivo_comprimido, nombre_archivo_salida, dicci
     
     # Leer diccionario de códigos
     diccionario_decodificacion = leer_diccionario_codigos(diccionario_codigos)
-    print(diccionario_decodificacion)
     
     # Descomprimir el texto usando el diccionario de decodificación
     texto_decodificado = ""
@@ -43,11 +41,10 @@ def descomprimir_archivo(nombre_archivo_comprimido, nombre_archivo_salida, dicci
         # Revisar si el código actual coincide con uno en el diccionario
         if codigo_actual in diccionario_decodificacion:
             caracter = diccionario_decodificacion[codigo_actual]
+            if caracter == '\\n':
+                caracter = '\n'  # Reemplazar '\\n' con un salto de línea real
             texto_decodificado += caracter
             codigo_actual = ""
     
-    # Guardar el texto descomprimido en un archivo de salida
     with open(nombre_archivo_salida, 'w', encoding='utf-8') as archivo:
         archivo.write(texto_decodificado)
-
-    print("Descompresión completada con éxito.")

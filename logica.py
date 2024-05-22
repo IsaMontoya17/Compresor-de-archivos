@@ -93,7 +93,11 @@ def asignar_codigos_huffman(nodo, codigo_actual="", codigos=None, longitud=0):
     if nodo.izq is None and nodo.der is None:
         if codigos is None:
             codigos = []
-        codigos.append((nodo.caracter, nodo.ocurrencia, codigo_actual, longitud))
+        caracter = nodo.caracter
+        # Si el carácter es un salto de línea, lo representamos como '\n'
+        if caracter == '\n':
+            caracter = '\\n'
+        codigos.append((caracter, nodo.ocurrencia, codigo_actual, longitud))
         return
 
     # Recorremos el árbol recursivamente hacia la izquierda y hacia la derecha
