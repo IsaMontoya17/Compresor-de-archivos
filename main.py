@@ -1,12 +1,16 @@
-import lectura, logica, escritura, nodo
+import lectura, logica, escritura
 
 def main():
     nombre_archivo = "./archivos/prueba.txt"
+    nombre_archivo_comprimido = "./archivos/comprimido.txt"
+    nombre_archivo_salida = "./archivos/descomprimido.txt"
+    nombre_diccionario_codigos = "./archivos/diccionarioCodigos.txt"
+    
     texto = lectura.leer_archivo_como_string(nombre_archivo)
     if "El archivo no fue encontrado." in texto or "Ocurrió un error" in texto:
         print(texto)
         return
-    
+
     # Contar ocurrencias
     conteo = logica.contar_ocurrencias_caracteres(texto)
     
@@ -23,38 +27,29 @@ def main():
     codigos_huffman = []
     logica.asignar_codigos_huffman(arbol_huffman, "", codigos_huffman)
     
-    print("Codigos Huffman asignados:")
+    print("Códigos Huffman asignados:")
     for caracter, ocurrencia, codigo, longitud in codigos_huffman:
         print(f"Caracter: {caracter}, Ocurrencia: {ocurrencia}, Codigo: {codigo}, Longitud: {longitud}")
 
-    
     # Generar diccionario de códigos
     diccionario_codigos = escritura.generar_diccionario_codigos(codigos_huffman)
+    escritura.guardar_diccionario_codigos(codigos_huffman)
     
     # Comprimir texto
-    codigo_comprimido = escritura.comprimir_texto(texto, diccionario_codigos)
+    codigo_comprimido, bits_relleno = escritura.comprimir_texto(texto, diccionario_codigos)
     print(codigo_comprimido)
     
+    # Convertir el código comprimido a bytes
+    codigo_comprimido_bytes = escritura.bits_a_bytes(codigo_comprimido)
+    
     # Escribir archivo comprimido
-    escritura.escribir_archivo_comprimido("./archivos/comprimido.txt", codigo_comprimido)
+    escritura.escribir_archivo_comprimido(nombre_archivo_comprimido, codigo_comprimido_bytes, bits_relleno)
     
     print("Compresión completada con éxito.")
-    
-    # Descompresión
-    
-    # Leer el código comprimido desde el archivo
-    codigo_comprimido_leido = lectura.leer_archivo_como_string("./archivos/comprimido.txt")
-    
-    # Generar diccionario de decodificación
-    diccionario_decodificacion = lectura.generar_diccionario_decodificacion(codigos_huffman)
-    
-    # Descomprimir texto
-    texto_descomprimido = lectura.descomprimir_texto(codigo_comprimido_leido, diccionario_decodificacion)
-    
-    # Escribir archivo descomprimido como texto
-    escritura.escribir_archivo_descomprimido("./archivos/descomprimido.txt", texto_descomprimido)
-    
-    print("Descompresión completada con éxito.")
+
+    # Descomprimir archivo
+
+    lectura.descomprimir_archivo(nombre_archivo_comprimido, nombre_archivo_salida, nombre_diccionario_codigos)
     
 if __name__ == "__main__":
     main()
