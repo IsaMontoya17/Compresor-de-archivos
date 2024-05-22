@@ -48,3 +48,10 @@ def descomprimir_archivo(nombre_archivo_comprimido, nombre_archivo_salida, dicci
     
     with open(nombre_archivo_salida, 'w', encoding='utf-8') as archivo:
         archivo.write(texto_decodificado)
+        
+import os
+
+def verificar_existencia_archivo(ruta_archivo_comprimido):
+
+    return os.path.exists(ruta_archivo_comprimido)
+
