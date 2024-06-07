@@ -37,17 +37,14 @@ def ordenar_lista_asc(cabeza):
     if cabeza is None or cabeza.sig is None:
         return cabeza
 
-    # Convertir la lista enlazada a una lista estándar
     lista = lista_enlazada_a_lista(cabeza)
 
-    # Ordenar la lista de forma ascendente
     n = len(lista)
     for i in range(n):
         for j in range(0, n-i-1):
             if lista[j].ocurrencia > lista[j+1].ocurrencia:
                 lista[j], lista[j+1] = lista[j+1], lista[j]
 
-    # Actualizar los enlaces sig en la lista enlazada original
     for i in range(n-1):
         lista[i].sig = lista[i+1]
     lista[-1].sig = None

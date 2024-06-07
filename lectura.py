@@ -15,7 +15,7 @@ def leer_diccionario_codigos(ruta_archivo):
     diccionario_codigos = {}
     with open(ruta_archivo, 'r') as archivo:
         for linea in archivo:
-            caracter, codigo = linea.rstrip().split(':', 1)
+            caracter, codigo = linea.rstrip().rsplit(':', 1)
             diccionario_codigos[codigo.strip()] = caracter
     return diccionario_codigos
 

@@ -18,17 +18,10 @@ def comprimir_archivo():
     arbol_huffman = logica.generar_arbol_huffman(cabeza)
     codigos_huffman = []
     logica.asignar_codigos_huffman(arbol_huffman, "", codigos_huffman)
-    
-    print("Códigos Huffman asignados:")
-    for caracter, ocurrencia, codigo, longitud in codigos_huffman:
-        print(f"Caracter: {caracter}, Ocurrencia: {ocurrencia}, Codigo: {codigo}, Longitud: {longitud}")
 
     escritura.generar_guardar_diccionario_codigos(codigos_huffman)
-    
     codigo_comprimido, bits_relleno = escritura.comprimir_texto(texto, nombre_diccionario_codigos)
-    print(codigo_comprimido)
     codigo_comprimido_bytes = escritura.bits_a_bytes(codigo_comprimido)
-    
     escritura.escribir_archivo_comprimido(nombre_archivo_comprimido, codigo_comprimido_bytes, bits_relleno)
     
     print("Compresión completada con éxito.")
