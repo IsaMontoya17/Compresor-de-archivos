@@ -11,12 +11,9 @@ def generar_guardar_diccionario_codigos(codigos_huffman):
 def comprimir_texto(texto, ruta_diccionario_codigos):
     # Leer el diccionario de códigos desde el archivo
     diccionario_codigos = lectura.leer_diccionario_codigos(ruta_diccionario_codigos)
-
-    # Invertir el diccionario para que las claves sean los caracteres y los valores sean los códigos
     diccionario_codigos = {valor: clave for clave, valor in diccionario_codigos.items()}
 
     try:
-        # Generar el código comprimido para el texto
         codigo_comprimido = ''.join(diccionario_codigos[caracter] if caracter != '\n' else diccionario_codigos['\\n'] for caracter in texto)
     except KeyError as e:
         raise ValueError(f"El carácter '{e.args[0]}' no tiene un código asignado.") from e

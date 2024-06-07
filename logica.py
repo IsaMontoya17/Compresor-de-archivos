@@ -86,23 +86,20 @@ def asignar_codigos_huffman(nodo, codigo_actual="", codigos=None, longitud=0):
     if nodo is None:
         return
 
-    # Si el nodo es una hoja, asignamos el código y la longitud del código
     if nodo.izq is None and nodo.der is None:
         if codigos is None:
             codigos = []
         caracter = nodo.caracter
-        # Si el carácter es un salto de línea, lo representamos como '\n'
+        # Si el carácter es un salto de línea se representa como '\n'
         if caracter == '\n':
             caracter = '\\n'
         codigos.append((caracter, nodo.ocurrencia, codigo_actual, longitud))
         return
 
-    # Recorremos el árbol recursivamente hacia la izquierda y hacia la derecha
     asignar_codigos_huffman(nodo.izq, codigo_actual + "0", codigos, longitud + 1)
     asignar_codigos_huffman(nodo.der, codigo_actual + "1", codigos, longitud + 1)
     
 
-# Función para imprimir la lista
 def imprimir_lista(cabeza):
     actual = cabeza
     while actual is not None:

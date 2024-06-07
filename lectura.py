@@ -1,4 +1,4 @@
-import escritura
+import escritura, os
 
 def leer_archivo_como_string(nombre_archivo):
     try:
@@ -38,18 +38,16 @@ def descomprimir_archivo(nombre_archivo_comprimido, nombre_archivo_salida, dicci
     codigo_actual = ""
     for bit in codigo_comprimido_bits:
         codigo_actual += bit
-        # Revisar si el código actual coincide con uno en el diccionario
+
         if codigo_actual in diccionario_decodificacion:
             caracter = diccionario_decodificacion[codigo_actual]
             if caracter == '\\n':
-                caracter = '\n'  # Reemplazar '\\n' con un salto de línea real
+                caracter = '\n'  # Se reemplaza '\\n' con un salto de línea real
             texto_decodificado += caracter
             codigo_actual = ""
     
     with open(nombre_archivo_salida, 'w', encoding='utf-8') as archivo:
         archivo.write(texto_decodificado)
-        
-import os
 
 def verificar_existencia_archivo(ruta_archivo_comprimido):
 
